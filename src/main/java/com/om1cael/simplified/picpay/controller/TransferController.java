@@ -1,6 +1,7 @@
 package com.om1cael.simplified.picpay.controller;
 
 import com.om1cael.simplified.picpay.dto.TransferDTO;
+import com.om1cael.simplified.picpay.dto.UserDTO;
 import com.om1cael.simplified.picpay.service.TransferService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,8 @@ public class TransferController {
     private TransferService transferService;
 
     @PostMapping
-    private ResponseEntity<Void> transfer(@RequestBody @Valid TransferDTO transferDTO) {
-        transferService.transfer(transferDTO);
-        return ResponseEntity.ok().build();
+    private ResponseEntity<UserDTO> transfer(@RequestBody @Valid TransferDTO transferDTO) {
+        UserDTO userDTO = transferService.transfer(transferDTO);
+        return ResponseEntity.ok().body(userDTO);
     }
 }

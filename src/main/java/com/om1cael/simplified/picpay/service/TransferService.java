@@ -1,6 +1,7 @@
 package com.om1cael.simplified.picpay.service;
 
 import com.om1cael.simplified.picpay.dto.TransferDTO;
+import com.om1cael.simplified.picpay.dto.UserDTO;
 import com.om1cael.simplified.picpay.exception.MerchantTransferException;
 import com.om1cael.simplified.picpay.exception.NotEnoughBalanceException;
 import com.om1cael.simplified.picpay.exception.UnauthorizedTransactionException;
@@ -22,7 +23,7 @@ public class TransferService {
 
     private final String TRANSACTION_AUTHORIZE_URL = "https://util.devi.tools/api/v2/authorize";
 
-    public void transfer(TransferDTO transferDTO) {
+    public UserDTO transfer(TransferDTO transferDTO) {
         User sender = userService.getById(transferDTO.senderID());
         User receiver = userService.getById(transferDTO.receiverID());
 
@@ -40,6 +41,7 @@ public class TransferService {
 
         sender.setBalance(sender.getBalance() - transferDTO.amount());
         receiver.setBalance(receiver.getBalance() + transferDTO.amount());
+        return new UserDTO(sender.getBalance());
     }
 
     private boolean hasFunds(TransferDTO transferDTO, User sender) {
