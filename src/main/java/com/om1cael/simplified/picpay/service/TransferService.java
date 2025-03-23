@@ -7,6 +7,7 @@ import com.om1cael.simplified.picpay.exception.NotEnoughBalanceException;
 import com.om1cael.simplified.picpay.exception.UnauthorizedTransactionException;
 import com.om1cael.simplified.picpay.model.User;
 import com.om1cael.simplified.picpay.model.UserType;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,7 @@ public class TransferService {
 
     private final String TRANSACTION_AUTHORIZE_URL = "https://util.devi.tools/api/v2/authorize";
 
+    @Transactional
     public UserDTO transfer(TransferDTO transferDTO) {
         User sender = userService.getById(transferDTO.senderID());
         User receiver = userService.getById(transferDTO.receiverID());
