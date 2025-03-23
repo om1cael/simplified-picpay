@@ -17,8 +17,9 @@ public class User {
 
     private String fullName;
 
+    private Double balance;
+
     @Column(unique = true)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String cpf;
 
     @Column(unique = true)
@@ -27,6 +28,5 @@ public class User {
     @Enumerated(EnumType.ORDINAL)
     private UserType userType;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 }
