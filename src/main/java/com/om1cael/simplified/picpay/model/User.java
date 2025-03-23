@@ -28,5 +28,6 @@ public class User {
     @Enumerated(EnumType.ORDINAL)
     private UserType userType;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 }
