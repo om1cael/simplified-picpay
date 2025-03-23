@@ -1,5 +1,6 @@
 package com.om1cael.simplified.picpay.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +18,7 @@ public class User {
     private String fullName;
 
     @Column(unique = true)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String cpf;
 
     @Column(unique = true)
@@ -25,5 +27,6 @@ public class User {
     @Enumerated(EnumType.ORDINAL)
     private UserType userType;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 }
